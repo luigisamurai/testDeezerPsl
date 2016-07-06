@@ -23,19 +23,23 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.sun.research.ws.wadl.HTTPMethods;
 
+import testdeezerapi.logic.DeezerApiLogic;
 import testdeezerapi.utilities.HttpURLConnections;
 
 @RunWith(MockitoJUnitRunner.class)
 public class HttpURLConnectionsTest {
 	
-	@Mock  private HttpURLConnections mockHttpURLConnections;
-	@InjectMocks private HttpURLConnections httpURLConnection;
+	@Mock  
+	private HttpURLConnections mockHttpURLConnections;
+	
+	private HttpURLConnections httpURLConnection;
 	
 	private String headerXMashapeValue = null;
 	
 	@Before
 	public void setup(){
 		headerXMashapeValue = "WILX7s8CIPmshwtyE6SxV6fR1PYPp1XRuE1jsnW5TBnXCEN164";
+		httpURLConnection = new HttpURLConnections();
 		MockitoAnnotations.initMocks(this);
 	}
 	
@@ -105,8 +109,8 @@ public class HttpURLConnectionsTest {
 			httpURLConnection.setRequestMethod(HTTPMethods.GET.value());
 		
 			
-			Mockito.when( httpURLConnection.getResponseHttp() ).thenReturn(response);
-			jsonData = new JsonParser().parse(httpURLConnection.sendRequestHttp()).getAsJsonObject();
+			Mockito.when( mockHttpURLConnections.getResponseHttp() ).thenReturn(response);
+			jsonData = new JsonParser().parse(httpURLConnection.sendHttpsRequest()).getAsJsonObject();
 			
 			Assert.assertTrue(jsonData.get("id").getAsInt() == expectedValue );
 			

@@ -22,7 +22,7 @@ public class HttpURLConnections {
 	public HttpsURLConnection urlConnection;
 	private HashMap<String, String> requestHeader;
 	private String requestParams;
-	//private HttpURLConnections httpURLConnections = new HttpURLConnections();
+	private int responseCode;
 	
 	public HttpURLConnections (){
 		this.requestHeader = new HashMap<String, String>();
@@ -40,7 +40,13 @@ public class HttpURLConnections {
 		}
 	}
 	
-	public String sendRequestHttp() throws Exception{
+	/**
+	  * Envía una petición Http con una cabecera, método de envió (GET o POST) y parámetros de petición.
+	  * La cabecera, método y parámetros de la petición son parametrizados antes de acceder a este método
+	  * @return      String, almacena la respuesta en el formato solicitado
+	  * @see         https://docs.oracle.com/javase/7/docs/api/javax/net/ssl/HttpsURLConnection.html
+	*/
+	public String sendHttpsRequest() throws Exception{
 		Iterator iterator;
 		Map.Entry property =null;
 		DataOutputStream dataOutputStream = null;
@@ -68,7 +74,7 @@ public class HttpURLConnections {
 				dataOutputStream.flush();
 			}
 			
-			//bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(),"utf-8"));
+			this.responseCode = urlConnection.getResponseCode();
 			bufferedReader =  getResponseHttp();
 			response = new String("");
 		
@@ -98,10 +104,20 @@ public class HttpURLConnections {
 		
 	}
 	
+	/**
+	  * Establece un parámetro y valor para ser adicionado como Cabecera de la petición HTTP
+	  * @param  headerName  Nombre de la propiedad de cabecera que se adiciona
+	  * @param  headervalue Valor de la propiedad de cabecera que se adiciona
+	*/
 	public void addHeader(String headerName, String headervalue){
 		requestHeader.put(headerName, headervalue);
 	}
 	
+	/**
+	  * Establece un nombre y valor para ser adicionado como parametros de la petición HTTP
+	  * @param  nameParam  Nombre de la propiedad que se adiciona
+	  * @param  valueParam Valor de la propiedad que se adiciona
+	*/
 	public void addParam(String nameParam, String valueParam){
 		requestParams+= requestParams==null ? "" : "&";
 		requestParams+= String.format("%s=%s", nameParam, valueParam);
@@ -114,7 +130,11 @@ public class HttpURLConnections {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
+	
+	/**
+	  * Establece el método que se utiliza para el envió de la petición Http 
+	  * @param  requestMethod  Nombre del método de envió de la petición http (Ej: GET., POST) 
+	*/
 	public String getRequestMethod() {
 		return requestMethod;
 	}
@@ -127,9 +147,11 @@ public class HttpURLConnections {
 		return requestHeader;
 	}
 
-
-
 	public HttpsURLConnection getUrlConnection() {
 		return urlConnection;
+	}
+
+	public int getResponseCode() {
+		return responseCode;
 	}
 }

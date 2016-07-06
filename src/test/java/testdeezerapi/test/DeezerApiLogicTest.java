@@ -18,8 +18,11 @@ import testdeezerapi.utilities.HttpURLConnections;
 @RunWith(Parameterized.class)
 public class DeezerApiLogicTest {
 	
-	@Mock  private HttpURLConnections httpURLConnections;
-	@InjectMocks private DeezerApiLogic deezerApiLogic;
+	@Mock  
+	private HttpURLConnections httpURLConnections;
+	
+	@InjectMocks 
+	private DeezerApiLogic deezerApiLogic;
 	
 	private String artistName;
 	
@@ -50,7 +53,7 @@ public class DeezerApiLogicTest {
 			successResponse = new JsonObject();
 			successResponse.addProperty("link", "www.deezer.com");
 			
-			Mockito.when(httpURLConnections.sendRequestHttp()).thenReturn(successResponse.toString());
+			Mockito.when(httpURLConnections.sendHttpsRequest()).thenReturn(successResponse.toString());
 			
 			response = deezerApiLogic.queryForArtistName(this.artistName);
 			Assert.assertTrue(response.has("link"));
