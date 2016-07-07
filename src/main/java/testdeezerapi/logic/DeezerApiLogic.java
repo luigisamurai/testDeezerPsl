@@ -23,6 +23,7 @@ public class DeezerApiLogic {
 	  * Realiza una consulta con filtro nombre del artista en el servicio publicado Deezer 
 	  * @param  artistName  an absolute URL giving the base location of the image
 	  * @return      Objecto JsonObject con la informacio obtenida
+	 * @throws Exception 
 	  * @see         https://market.mashape.com/deezerdevs/deezer-1#artist
 	*/
 	public JsonObject queryForArtistName(String artistName) throws Exception{
@@ -30,7 +31,7 @@ public class DeezerApiLogic {
 	  JsonObject jsonData = null;
 	
 	  uriSearch = String.format("%s/artist/%s", urlDeezerApp, artistName);
-	  //httpURLConnection.setUrl(uriSearch);
+	  httpURLConnection.setUrl(uriSearch);
 	  httpURLConnection.setRequestMethod(HTTPMethods.GET.value());
 	  httpURLConnection.addHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON);
 	  httpURLConnection.addHeader(HttpHeaders.CONTENT_TYPE , MediaType.APPLICATION_JSON);
