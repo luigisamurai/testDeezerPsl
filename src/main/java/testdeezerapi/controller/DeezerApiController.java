@@ -6,6 +6,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+import org.apache.http.HttpStatus;
 import com.google.gson.JsonObject;
 import testdeezerapi.logic.DeezerApiLogic;
 
@@ -29,12 +30,7 @@ public class DeezerApiController {
 	@Consumes("text/plain")
 	@Produces("application/json")
 	public Response findAlbumForArtist(@PathParam("artistName") String artistName) throws Exception {
-		JsonObject jsonResponse = null;
-		try {
-			jsonResponse = this.deezerApiLogic.queryForArtistName(artistName);
-			return Response.status(200).entity(jsonResponse.toString()).build();	
-		} catch (Exception e) {
-			throw e;
-		}
+	  JsonObject jsonResponse  = this.deezerApiLogic.queryForArtistName(artistName);
+	  return Response.status(HttpStatus.SC_OK).entity(jsonResponse.toString()).build();	
 	}
 }

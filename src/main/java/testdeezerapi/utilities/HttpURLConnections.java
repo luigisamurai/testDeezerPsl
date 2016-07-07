@@ -29,16 +29,6 @@ public class HttpURLConnections {
 		this.requestParams = "";
 	}
 	
-	public BufferedReader getResponseHttp() throws Exception{
-		BufferedReader bufferedReader = null;
-		try{
-			bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(),"utf-8"));
-			return bufferedReader;
-		}
-		catch(Exception e){
-		 throw e;
-		}
-	}
 	
 	/**
 	  * Envía una petición Http con una cabecera, método de envió (GET o POST) y parámetros de petición.
@@ -75,7 +65,7 @@ public class HttpURLConnections {
 			}
 			
 			this.responseCode = urlConnection.getResponseCode();
-			bufferedReader =  getResponseHttp();
+			bufferedReader =  new BufferedReader(new InputStreamReader(urlConnection.getInputStream(),"utf-8"));
 			response = new String("");
 		
 			
@@ -89,9 +79,6 @@ public class HttpURLConnections {
 		
 			return response;
 			
-		}
-		catch(Exception e){
-			throw e;
 		}
 		finally{
 			if(dataOutputStream!= null){
