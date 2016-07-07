@@ -30,7 +30,7 @@ public class DeezerApiLogic {
 	  JsonObject jsonData = null;
 	
 	  uriSearch = String.format("%s/artist/%s", urlDeezerApp, artistName);
-	  httpURLConnection.setUrl(uriSearch);
+	  //httpURLConnection.setUrl(uriSearch);
 	  httpURLConnection.setRequestMethod(HTTPMethods.GET.value());
 	  httpURLConnection.addHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON);
 	  httpURLConnection.addHeader(HttpHeaders.CONTENT_TYPE , MediaType.APPLICATION_JSON);

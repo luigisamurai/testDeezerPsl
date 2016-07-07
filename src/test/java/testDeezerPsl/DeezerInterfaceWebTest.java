@@ -28,7 +28,7 @@ public class DeezerInterfaceWebTest {
 	private WebElement labelDeezerProfile;
 	private WebElement labelAlbums;
 	private WebElement labelDeezerFans	;
-	private final String URL = "http://localhost:8080/testdeezerapi/"; 
+	private final String URL = "http://localhost:8080"; 
 	private final String linkDeezerProfile = "http://www.deezer.com/artist";
 	private String filterArtistName = null;
 	

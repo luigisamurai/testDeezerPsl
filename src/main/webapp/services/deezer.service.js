@@ -19,7 +19,7 @@
     
      var request = {
         method: 'GET',
-        url  : 'http://'+location.hostname+':'+location.port+'/testdeezerapi/rest/deezerApi/findAlbumForArtist/'+ name,
+        url  : 'http://'+location.hostname+':'+location.port+'/rest/deezerApi/findAlbumForArtist/'+ name,
         headers: {
           'X-Mashape-Key': 'WILX7s8CIPmshwtyE6SxV6fR1PYPp1XRuE1jsnW5TBnXCEN164',
           'Accept': 'application/json'

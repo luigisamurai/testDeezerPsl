@@ -19,18 +19,20 @@
 				<target>1.8</target>
 			</configuration>
 		</plugin>
+		
 		<plugin>
-	         <groupId>org.codehaus.mojo</groupId>
-	         <artifactId>tomcat-maven-plugin</artifactId>
-	         <configuration>
-	                 <url>http://localhost:8080/manager</url>
-	                 <server>TomcatServer</server>
-	                 <path>/testdeezerapi</path>
-	         </configuration>
+	    	<groupId>org.springframework.boot</groupId>
+	    	<artifactId>spring-boot-maven-plugin</artifactId>
 		</plugin>
+		
 		
 	</plugins>
   </build>
+  <parent>
+	  <groupId>org.springframework.boot</groupId>
+	  <artifactId>spring-boot-starter-parent</artifactId>
+	  <version>1.1.8.RELEASE</version>
+  </parent>
   <dependencies>
   	<dependency>
   		<groupId>junit</groupId>
@@ -73,5 +75,24 @@
 	    <artifactId>gson</artifactId>
 	    <version>2.7</version>
 	</dependency>
+	
+  	
+  	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+	
+	<dependency>
+	
+	   <groupId>org.springframework.boot</groupId>
+	   <artifactId>spring-boot-starter-tomcat</artifactId>
+	   <scope>provided</scope>
+  </dependency>
+	
   </dependencies>
+  
+  <properties>
+  <start-class>TestDeezerApi</start-class>
+ </properties>
+  
 </project>
